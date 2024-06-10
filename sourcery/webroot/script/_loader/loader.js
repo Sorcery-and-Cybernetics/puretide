@@ -30,7 +30,7 @@ var fs = require("fs")
             var path = config.path
             var productcode = config.productcode
             var scriptversion = _.config.appversion || "last"
-            var scriptpath = "scripts/" + scriptversion + "/"
+            var scriptpath = "script/" + scriptversion + "/"
             
             if (_.isserver) {
                 config.basepath.serverroot = same$(config.basepath.product, config.basepath.shared)

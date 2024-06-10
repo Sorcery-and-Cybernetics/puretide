@@ -3,28 +3,27 @@
     //*************************************************************************************************
     
     ; (function (_) {
-        var scope = _.ambient
 
-        _.extend(scope, {
-            config: {
+
+        _.loadconfig = function (startconfig) {
+            var config = {
                 debugmode: false
                 , ismobile: false
                 , langcode: "en"
                 
-                //, productcode: ""
-                //            , appstamp: _.now()
-                , screenlocks: 0
+                , productcode: ""
+                , appstamp: _.now()
+    
                 , keepalivemixtimeout: 45000
                 , responsetimeout: 3000
                 , location: "" + (_.isserver? "": window.location)
-                
+                    
                 , basepath: {
                     product: ""
-                    , shared: ""
+                    , script: ""
                     , serverroot: ""
-                    //, scriptroot: ""
                 }
-                
+                    
                 , path: {
                     webroot: ""
                     , productscript: ""
@@ -35,51 +34,31 @@
                     , data: "data/"
                     , cert: "cert/"
                 }
-                
-                // , language: {}
-                
-                // , ui: {}
             }
-            
-            // , system: {}
-            
-            // //refactormarker        , location: {}
-            // , routes: {}   //refactormarker 
-            // , harbor: {}
-            
-            // , "helper": {}
-            // , "enum": {}
-            // , "define": {}
-            // , "kind": {}
-            // , "make": {}
-            // , "have": {}
-            
-            // , noop: (function () { var noop = function () { }; noop.__functiontype = "noop"; return noop })()
-        })
-
-
-        _.loadconfig = function (appconfig) {
-            var me = this
-            var scope = this.scope
-            
-            if (appconfig) { extend(scope.config, appconfig) }
             
             if (scope.isserver) {
-                var settings = fs.readFileSync(scope.config.basepath.product + "config/serverconfig", "utf-8")
-            
-                var settings = eval("(" + settings + ")")
-                _.extend(scope.config, settings)                
+                _.loadfile("./config/serverconfig", function (err, data) {
+                    if (err) {
+                        console.log("Error loading serverconfig: " + err)
+                    } else {
+                        var settings = eval("(" + data + ")")
+                        _.extend(config, settings)
+                    }
+                })
             }
-            
-            var config = scope.config
+
+                        
+            if (appconfig) { extend(config, startconfig) }
+            _.config = config
+
             
             var path = config.path
             var productcode = config.productcode
             var scriptversion = _.config.appscriptversion || "last"
-            var scriptpath = "scripts/" + scriptversion + "/"
+            var scriptpath = "script/" + scriptversion + "/"
             
             if (scope.isserver) {
-                config.basepath.serverroot = same$(config.basepath.product, config.basepath.shared)
+                config.basepath.serverroot = _.same$(config.basepath.product, config.basepath.shared)
                 
                 var length = config.basepath.serverroot.length
                 config.basepath.product = config.basepath.product.slice(length)
@@ -128,7 +107,7 @@
                 this.updatestate()
             }
             
-            return this
+            return config
         }
 
-    })
+    }) (_.ambient)

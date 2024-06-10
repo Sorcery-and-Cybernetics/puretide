@@ -508,7 +508,7 @@ _.makeloader = function (scope, proto) {
             var path = config.path
             var productcode = config.productcode
             var scriptversion = _.config.appscriptversion || "last"
-            var scriptpath = "scripts/" + scriptversion + "/"
+            var scriptpath = "script/" + scriptversion + "/"
             
             if (scope.isserver) {
                 config.basepath.serverroot = same$(config.basepath.product, config.basepath.shared)
@@ -748,7 +748,7 @@ _.makeloader = function (scope, proto) {
                     this.currentmodule = this
                     this.rootmodule = this.initmodule("module", scope.config.path.script + scope.config.path.productscript)
                     this.currentmodule = null
-                    this.rootmodule.include("scripts_min")
+                    this.rootmodule.include("script_min")
                     this.updatestate()
                 } else {
                     //this.loadjs(this, scope.config.path.productscript + "_root")

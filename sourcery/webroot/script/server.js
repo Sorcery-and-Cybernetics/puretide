@@ -8,6 +8,7 @@ var normalizepath = function (path) {
 
 var config = {
     isserver: true
+    
     , basepath: {
         product: normalizepath(process.cwd()) + "/"
         , script: normalizepath(__dirname) + "/" 

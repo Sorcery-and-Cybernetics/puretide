@@ -2,13 +2,13 @@
   "debugmode": true
   , "devmode": true
   , "appversion": "last"
-  , "productcode" : "myproduct"    
+  , "productname": "puretide"
   , "langcode": "en"
     
   , "server": {
       "httpport": 80
       , "httpsport": 443
-      , "webdomain": "http://localhost"
+      , "webdomain": "http://localhost/"
 
       , "sessiontimeout": 3600
       , "responsetimeout": 3000
@@ -23,13 +23,14 @@
   }
 
   , "path": {
-      "webroot": ""
-      , "productscript": ""
-      , "script": ""
-
-      , "media": "media/"
+      "media": "media/"
       , "i18n": "interface/i18n/"
       , "data": "data/"
       , "cert": "cert/"
-  }
+  } 
+  
+  , "worlds": [
+        { "name": "server", "rules": ["server"] }
+        , { "name": "client", "rules": ["client"] }
+  ]
 }

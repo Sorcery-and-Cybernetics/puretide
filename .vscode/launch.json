@@ -8,8 +8,8 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/sourcery/webroot/scripts/server.js",
-            "cwd":     "${workspaceFolder}/sourcery/webroot/scripts/"
+            "program": "${workspaceFolder}/sourcery/webroot/script/server.js",
+            "cwd":     "${workspaceFolder}/sourcery/webroot/script/"
         }
     ]
 }
