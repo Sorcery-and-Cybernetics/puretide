@@ -1,0 +1,35 @@
+﻿{
+  "debugmode": true
+  , "devmode": true
+  , "appversion": "last"
+  , "productcode" : "myproduct"    
+  , "langcode": "en"
+    
+  , "server": {
+      "httpport": 80
+      , "httpsport": 443
+      , "webdomain": "http://localhost"
+
+      , "sessiontimeout": 3600
+      , "responsetimeout": 3000
+
+      , "sender": "info@sactide.com"
+  }
+
+  , "basepath": {
+      "product": ""
+      , "shared": ""
+      , "serverroot": ""
+  }
+
+  , "path": {
+      "webroot": ""
+      , "productscript": ""
+      , "script": ""
+
+      , "media": "media/"
+      , "i18n": "interface/i18n/"
+      , "data": "data/"
+      , "cert": "cert/"
+  }
+}
