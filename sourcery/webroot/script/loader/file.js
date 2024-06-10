@@ -45,6 +45,8 @@
         }    
 
         , loadfile:  function (url, next) {
+            var x = fs.realpathSync(".")
+
             if (_.isserver) {
                 try {
                     var response = fs.readFileSync(url, "utf-8")

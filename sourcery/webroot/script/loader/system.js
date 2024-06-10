@@ -15,9 +15,6 @@ _.ambient = _.ambient || {}
     _.isserver  =  isserver
     _.loader = { system: _.ambient }
 
-    _.productpath = ""
-    _.scriptpath = ""
-
     _.modules = {}
     _.worlds = {}
 
@@ -49,9 +46,7 @@ _.ambient = _.ambient || {}
     }
 
     _.start = function(config) {
-        _.productpath = config.basepath.product
-        _.scriptpath = config.basepath.script
-    
+        _.config = _.loadconfig(config)
         _.modules._root = _.make.rootmodule(_, "", "")
 
         _.createworld("test", {}, function() {
@@ -68,6 +63,34 @@ _.ambient = _.ambient || {}
             })
             .start()
     }
+
+
+
+            // //this goes to creating worlds
+            
+            // foreach(_.config.role, function (rolename) {
+            //     if (rolename) { me.addrole(rolename) }
+            // })
+            
+            // //Add roles for each local harborroute
+            // foreach(scope.config.harbor, function (value, name) {
+            //     if (!value.ocean) {
+            //         me.addrole(name)
+            //     }
+            // })
+            
+            // scope.isserver = config.isserver || scope.isserver
+            // scope.debugmode = config.debugmode
+            // scope.devmode = config.devmode
+            
+            // //load source modules
+            // if (scope.isserver) {
+            //     this.path = ""
+            //     this.updatestate()
+            // } else {
+            //     this.path = ""
+            //     this.updatestate()
+            // }    
     
 
 }) (_.ambient)

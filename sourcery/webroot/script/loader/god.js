@@ -39,7 +39,7 @@
 
                 _.currentpath = path
         
-                _.file.loadscript(_.scriptpath + path + ".js", function (err, script) {
+                _.file.loadscript(_.config.basepath.script + path + ".js", function (err, script) {
                     if (err) {
                         throw "Error loading script: " + path
                     } else {

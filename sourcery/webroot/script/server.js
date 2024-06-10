@@ -15,8 +15,6 @@ var config = {
     }    
 }
 
-_.scriptpath = config.basepath.script
-
 
 
 require("./loader/_root.js")
