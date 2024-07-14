@@ -15,11 +15,8 @@
                 , responsetimeout: 3000
                 , location: "" + (_.isserver? "": window.location)
                     
-                , basepath: {
-                    product: ""
-                    , script: ""
-                    , serverroot: ""
-                }
+                , productpath: ""
+                , libpath: ""
                     
                 , path: {
                     media: "media/"
@@ -45,11 +42,12 @@
             if (startconfig) { _.extend(config, startconfig) }
             
             if (_.isserver) {
-                config.basepath.serverroot = _.sameleft$(config.basepath.product, config.basepath.shared)
-                
+                _.productpath = config.productpath
+                _.webroot = config.webroot
             } else {
-                //script paths should be relative to the index.html for visual studio to work
-                config.basepath.script = "../../script/" 
+                //libpath should be relative to the index.html for visual studio to work
+                _.productpath = ""
+                _.webroot = "../../lib/" 
             }
             
             return config

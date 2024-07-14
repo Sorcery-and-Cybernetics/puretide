@@ -6,18 +6,16 @@ var normalizepath = function (path) {
     return (path || "").replace(/\\/g, "/")
 }
 
+var productpath = normalizepath(process.cwd()) + "/"
+
 var config = {
     isserver: true
     
-    , basepath: {
-        product: normalizepath(process.cwd()) + "/"
-        , script: normalizepath(__dirname) + "/" 
-    }    
+    , productpath: productpath
+    , webroot: productpath + "../../"
 }
 
-
-
-require("./loader/_root.js")
+require(config.webroot + "lib/loader/_root.js")
 
   _.ambient
       .start(config)

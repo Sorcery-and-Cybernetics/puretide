@@ -1,8 +1,8 @@
-_.ambient.rootmodule("")
+_.ambient.rootmodule("lib/")
 //    .include(_.config.path.productscript + "clientconfig", "client")
 //    .include(_.config.path.productscript + "icon", "client")
 
-    .include("lib/")
+    .include("core/")
 //    .include("route/")
 //    .include("widget/", "client")
 //    .include("model/")
@@ -11,3 +11,4 @@ _.ambient.rootmodule("")
 //	.include("program/")
     
 //    .include(_.config.path.productscript)
+

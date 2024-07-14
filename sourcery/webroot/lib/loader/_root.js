@@ -7,6 +7,7 @@ require(loaderpath + "config.js")
 require(loaderpath + "object.js")
 require(loaderpath + "module.js")
 require(loaderpath + "rootmodule.js")
+require(loaderpath + "requiremodule.js")
 
 require(loaderpath + "world.js")
 require(loaderpath + "god.js")

@@ -8,8 +8,15 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/sourcery/webroot/script/server.js",
+            "program": "${workspaceFolder}/sourcery/webroot/product/puretide/server.js",
             "cwd":     "${workspaceFolder}/sourcery/webroot/product/puretide/"
-        }
+        }, 
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach to Process",
+            "processId": "${command:PickProcess}",
+            "skipFiles": ["<node_internals>/**"]
+          }        
     ]
 }

@@ -7,6 +7,8 @@
         "paths": {
             "*": ["*"]
         }
-    },
-    "include": ["loader.d.ts", "**/*.js", "bla.jss"]
+    },    "include": [
+        "loader.d.ts",
+        "sourcery/webroot/script/**/*.js"
+    ]
 }

@@ -29,12 +29,13 @@
             , parent: function () { return this._parent }
             , loader: function () { return this._loader }
             , isrootmodule: function () { return true }
+            , isrequiremodule: function () { return false }
             , istop: function () { return this._parent? false: true }
             , rule: function () { return this._rule }
 
             , name: function () { return this._name }            
             , path: function () { return (this._parent ? this._parent.path() : "") + this._name }
-            , fullpath: function () { return (this._parent ? this._parent.path() : "") + this._name + "_root"}
+            , fullpath: function () { return (this._parent ? this._parent.path() : "") + this._name }
 
             , isloaded: function (value) { 
                 if (value === undefined) { return this._isloaded }
@@ -54,16 +55,16 @@
 
             , include: function (name, rule) {
                 if (_.file.isdir$(name)) {
-                    var module = _.make.rootmodule(this, name, rule)
+                    _.make.rootmodule(this, name, rule)
                 } else {
-                    var module = _.make.module(this, name, rule)
+                    _.make.module(this, name, rule)
                 }
 
                 return this
             }
 
-            , require: function () {
-                //todo:
+            , require: function (name, rule) {
+                _.make.requiremodule(this, name, rule)
                 return this
             }            
 
@@ -77,26 +78,35 @@
             }
 
             , load: function (god) {
+                if (!god) { throw "Error: Rootmodule.load requires a god"}
+
                 if (!this.isloaded()) {
-                    if (god) { 
-                        god.loadmodule(this)
-                    } else {
-                        this._loader.loadscript(this.fullpath())
-                    }
+                    god.loadmodule(this)
                     return false
                 }
 
+                god.loaded[this.fullpath()] = true
+
                 var paths = []
 
-                for (var key in this._modules) {
-                    var module = this._modules[key]
-                    var subpaths = module.load(god)
+                for (var i = 0; i < this._modules.length; i++) {
+                    var module = this._modules[i]
 
-                    if (!subpaths) { return false }
-                    if (_.isstring(subpaths)) { 
-                        paths.push(subpaths)
-                    } else {
-                        paths = paths.concat(subpaths)
+                    if (god.checkrule(module)) {
+                        if (module.isrequiremodule()) {
+                            if (!module.load(god)) { return false }
+
+                        } else {
+                            var subpaths = module.load(god)
+
+                            if (!subpaths) { return false }
+
+                            if (_.isstring(subpaths)) { 
+                                paths.push(subpaths)
+                            } else if (_.isarray(subpaths)) {
+                                paths = paths.concat(subpaths)
+                            }
+                        }
                     }
                 }
                 return paths

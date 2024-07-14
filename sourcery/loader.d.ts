@@ -1,7 +1,10 @@
 declare global {
     var _: {
+
         ambient: {
-             loader: {
+                module(name: string, source: (_: scripts) => void): module;
+
+//             loader: {
                 debug(line: string);                
                 noop();                
                 isfunction(value: any): boolean;
@@ -26,10 +29,10 @@ declare global {
                 ruleengine: ruleengine;
 
                 define: {
-                    object(name: string, model: (supermodel: _object) => object);
-                    module(name: string, model: (supermodel: module) => object);
-                    rootmodule(name: string, model: (supermodel: rootmodule) => object);
-                    ruleengine(name: string, model: (supermodel: ruleengine) => object);
+                    object(name: string, model: function);
+                    module(name: string, model: function);
+                    rootmodule(name: string, model: function);
+                    ruleengine(name: string, model: function);
                 }
 
                 make: {
@@ -39,10 +42,12 @@ declare global {
                     ruleengine(): ruleengine;
                 }
             };
-            currentworld: {
-            };
-        };
+//        };
     };
+}
+
+interface scripts {
+    isalpha(value: any): boolean;
 }
 
 class _object {

@@ -72,6 +72,12 @@
         }
             
         , loadscript: function (url, next) {
+            if (url.substring(0,4) == "lib/") {
+                url = _.webroot + url
+            } else {
+                url = _.productpath + url
+            }
+
             if (_.isserver) {
                 require(url)
                 next(null)

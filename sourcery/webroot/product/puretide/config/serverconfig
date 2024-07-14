@@ -26,11 +26,11 @@
       "media": "media/"
       , "i18n": "interface/i18n/"
       , "data": "data/"
-      , "cert": "cert/"
+      , "cert": "config/cert/"
   } 
   
   , "worlds": [
-        { "name": "server", "rules": ["server"] }
-        , { "name": "client", "rules": ["client"] }
+        { "name": "server", "rules": ["server"], "requires": ["script/"] }
+        , { "name": "client", "rules": ["client"], "requires": ["script/"] }
   ]
 }
