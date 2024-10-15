@@ -8,8 +8,8 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/webroot/product/puretide/server.js",
-            "cwd":     "${workspaceFolder}/webroot/product/puretide/"
+            "program": "${workspaceFolder}/webroot/product/testtide/server.js",
+            "cwd":     "${workspaceFolder}/webroot/product/testtide/"
         }, 
         {
             "type": "node",

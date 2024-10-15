@@ -2,7 +2,7 @@ var loaderpath = "./"
 
 require(loaderpath + "system.js")
 require(loaderpath + "base.js")
-require(loaderpath + "file.js")
+require(loaderpath + "filesystem.js")
 require(loaderpath + "config.js")
 require(loaderpath + "object.js")
 require(loaderpath + "module.js")

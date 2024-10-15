@@ -1,4 +1,4 @@
-_.ambient.rootmodule("lib/")
+_.ambient.rootmodule("sourcery/")
 //    .include(_.config.path.productscript + "clientconfig", "client")
 //    .include(_.config.path.productscript + "icon", "client")
 

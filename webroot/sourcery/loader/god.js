@@ -24,7 +24,8 @@
                 var me = this
 
                 if (this.requires[modulepath]) { 
-                    throw "Required module " + modulepath + " can not be loaded."
+                    return
+                    //throw "Required module " + modulepath + " can not be loaded."
                 }
                 this.requires[modulepath] = true
 

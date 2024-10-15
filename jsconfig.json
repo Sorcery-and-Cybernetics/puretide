@@ -9,6 +9,6 @@
         }
     },    "include": [
         "loader.d.ts",
-        "sourcery/webroot/script/**/*.js"
+        "sourcery/webroot/sourcery/**/*.js"
     ]
 }
