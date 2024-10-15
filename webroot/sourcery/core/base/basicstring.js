@@ -406,7 +406,6 @@ _.ambient.module("basicstring", function (_) {
         var len = value.length
         return _.lcase$(_.right$(str, len)) == _.lcase$(value)
     }
-
     
     
 })

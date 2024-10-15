@@ -8,5 +8,5 @@
             "*": ["*"]
         }
     },
-    "include": ["loader.d.ts", "webroot/lib/**/*.js", "webroot/product/puretide/server.js"]
+    "include": ["loader.d.ts", "sourcery/**/*.js", "product/puretide/server.js"]
 }

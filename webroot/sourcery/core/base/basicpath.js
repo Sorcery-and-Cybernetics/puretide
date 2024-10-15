@@ -1,7 +1,7 @@
 _.ambient.module("basicpath", function (_) {
     _.path = _.path || {}
 
-    _.path.isdir = function (path) {
+    _.path.isdir$ = function (path) {
         path = _.cstr(path)
         return (path.substr(path.length - 1) == "/")
     }
@@ -60,10 +60,9 @@ _.ambient.module("basicpath", function (_) {
         return path.path + (path.isdir ? (path.name + "/") : "")
     }
 
+    //Todo: Implement http url split, split scheme
+    //Todo: shorten routine or use regex
     _.path.splitpath = function (url, result) {
-        //Todo: Implement http url split
-        //Todo: shorten routine or use regex
-
         result = result || {}
 
         if (!url) {
