@@ -29,7 +29,7 @@
             }
             
             if (_.isserver) {
-                _.file.loadfile("./config/serverconfig", function (err, data) {
+                _.filesystem.loadfile("./config/serverconfig", function (err, data) {
                     if (err) {
                         console.log("Error loading serverconfig: " + err)
                     } else {

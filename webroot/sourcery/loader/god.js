@@ -110,7 +110,7 @@
 
                 path += (module.isrootmodule()? "_root.js": ".js")
 
-                _.file.loadscript(path, function (err, script) {
+                _.filesystem.loadscript(path, function (err, script) {
                     if (err) {
                         throw "Error loading script: " + path
                     } else {

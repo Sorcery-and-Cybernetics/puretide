@@ -12,10 +12,10 @@ var config = {
     isserver: true
     
     , productpath: productpath
-    , webroot: productpath + "../../"
+    , libpath: productpath + "../../sourcery/"
 }
 
-require(config.webroot + "lib/loader/_root.js")
+require(config.libpath + "loader/_root.js")
 
   _.ambient
       .start(config)

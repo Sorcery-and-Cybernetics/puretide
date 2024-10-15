@@ -1,3 +1,2 @@
 _.ambient.rootmodule("")
-.include("script/")    
-.include("lib/")
+    .include("script/")    

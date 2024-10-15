@@ -54,7 +54,7 @@
             // }
 
             , include: function (name, rule) {
-                if (_.file.isdir$(name)) {
+                if (_.filesystem.isdir$(name)) {
                     _.make.rootmodule(this, name, rule)
                 } else {
                     _.make.module(this, name, rule)

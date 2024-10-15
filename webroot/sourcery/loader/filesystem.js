@@ -5,13 +5,13 @@
 ; (function (_) {
     var fs = require("fs")
 
-    _.file = {
+    _.filesystem = {
         normalizepath: function (path) {
             var path = (path || "").replace(/\\/g, "/")
             
             var splitted = path.split("/")
             var result = []
-            
+                        
             while (splitted.length) {
                 segment = splitted.shift()
                 
@@ -42,11 +42,15 @@
             }
             
             return result.join("/")
-        }    
-
+        }  
+        
+        /**
+         * Loads a file from the specified URL and passes the contents to the provided callback function.
+         *
+         * @param {string} url - The URL of the file to load.
+         * @param {function(error: Error | null, response: string | null)} next - The callback function to call with the file contents or an error.
+         */
         , loadfile:  function (url, next) {
-            var x = fs.realpathSync(".")
-
             if (_.isserver) {
                 try {
                     var response = fs.readFileSync(url, "utf-8")
@@ -72,7 +76,7 @@
         }
             
         , loadscript: function (url, next) {
-            if (url.substring(0,4) == "lib/") {
+            if (url.substring(0,4) == "sourcery/") {
                 url = _.webroot + url
             } else {
                 url = _.productpath + url
