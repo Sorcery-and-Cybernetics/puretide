@@ -12,9 +12,9 @@ require(loaderpath + "module.js")
 require(loaderpath + "rootmodule.js")
 require(loaderpath + "requiremodule.js")
 
+require(loaderpath + "system.js")
 require(loaderpath + "world.js")
 require(loaderpath + "god.js")
-
 require(loaderpath + "ruleengine.js")
 
 /** 

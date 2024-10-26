@@ -4,8 +4,11 @@
 ; (function (_) {
     _.define.object("world", function () {
         return {
-            create: function (god, name) {
-                this.god = god
+            system: null
+            , name: null
+            
+            , create: function (system, name) {
+                this.system = system
                 this.name = name
             }
         }

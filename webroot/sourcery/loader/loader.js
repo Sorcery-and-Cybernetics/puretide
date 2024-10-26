@@ -17,10 +17,11 @@ _.ambient = _.ambient || {}
 _.ambient.productpath = ""
 _.ambient.libpath = ""
 
+_.system = null
+
 
 ; (function(_) {
     _.isserver  =  isserver
-    _.loader = { system: _.ambient }
 
     _.modules = {}
     _.worlds = {}
@@ -56,6 +57,7 @@ _.ambient.libpath = ""
         _.config = _.loadconfig(config)
         _.modules._root = _.make.rootmodule(_, "", "")
 
+        _.system = _.make.system(config)
         _.createworlds(config.worlds)
 
         // _.createworld("testserver", { "name": "testserver", "rules": ["server"] }, function() {
@@ -69,32 +71,13 @@ _.ambient.libpath = ""
         for (var index = 0; index < _.config.worlds.length; index++) {
             var worldconfig = _.config.worlds[index]
 
-            if (!_.worlds[worldconfig.name]) {
-                _.createworld(worldconfig.name, worldconfig, _.createworlds)
+            if (!_.system.worlds[worldconfig.name]) {
+                _.system.createworld(worldconfig.name, worldconfig, _.createworlds)
                 return
             }
         }
 
         _.debug("All worlds are created")
-    }
-
-    _.createworld = function(name, config, next) {
-        var god = _.make.god(_, name, config)
-            .onfinished(function(world) {
-                _.debug("World " + name + " is created")
-                _.worlds[world.name] = world
-                next()
-            })
-
-        _.foreach(config.roles, function(role) {
-            god.addrole(role)
-        })            
-    
-        _.foreach(config.requires, function(require) {
-            god.require(require)
-        })
-
-        god.start()
     }
 
 

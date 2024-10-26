@@ -145,8 +145,7 @@
                     var next = this._onfinished
                     this._onfinished = null
                     next.call(this, this.world)
-                }
-                
+                }                
             }
 
         }
