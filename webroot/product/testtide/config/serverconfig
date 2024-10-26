@@ -30,7 +30,7 @@
   } 
   
   , "worlds": [
-        { "name": "server", "rules": ["server"], "requires": ["script/"] }
-        , { "name": "client", "rules": ["client"], "requires": ["script/"] }
+        { "name": "server", "roles": ["server"], "requires": ["script/"] }
+//        , { "name": "client", "roles": ["client"], "requires": ["script/"] }
   ]
 }

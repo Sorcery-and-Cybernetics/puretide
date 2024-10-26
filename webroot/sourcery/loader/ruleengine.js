@@ -1,13 +1,17 @@
 ; (function (_) {
-    var validaterule = function (me, filter) {
+    var validaterule = function (me, filter, isrequired) {
         function validatetoken(test) {
             test = _.trim$(test)
 
             if (test.slice(0, 1) == "!") {
+                test = test.slice(1)
+                if (test == "require") { return !isrequired }
                 return !me.hasrole(test.slice(1))
             }
-            return !!me.hasrole(test)
 
+            if (test == "require") { 
+                return !!isrequired } 
+            return !!me.hasrole(test)
         }
 
         function validateline(line) {
@@ -51,7 +55,7 @@
                 return this
             }
                     
-            , checkrule: function (rule) {
+            , checkrule: function (rule, isrequired) {
                 var me = this
                         
                 if (!rule) { return true }
@@ -60,7 +64,7 @@
                     var result = true
                             
                     _.foreach(rule, function (rule) {
-                        if (!me.checkrule(rule)) { result = false }
+                        if (!me.checkrule(rule, isrequired)) { result = false }
                     })
                     return result
                 }
@@ -69,7 +73,7 @@
                     rule = rule()
                 }
                         
-                return validaterule(this, rule)
+                return validaterule(this, rule, isrequired)
             }            
 
         }

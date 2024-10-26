@@ -43,11 +43,11 @@
             
             if (_.isserver) {
                 _.productpath = config.productpath
-                _.webroot = config.webroot
+                _.webroot = config.productpath + "../../" 
             } else {
                 //libpath should be relative to the index.html for visual studio to work
                 _.productpath = ""
-                _.webroot = "../../lib/" 
+                _.webroot = "../../" 
             }
             
             return config

@@ -82,8 +82,8 @@ _.ambient.libpath = ""
                 next()
             })
 
-        _.foreach(config.rules, function(rule) {
-            god.addrule(rule)
+        _.foreach(config.roles, function(role) {
+            god.addrole(role)
         })            
     
         _.foreach(config.requires, function(require) {

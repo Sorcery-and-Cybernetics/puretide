@@ -76,7 +76,7 @@
         }
             
         , loadscript: function (url, next) {
-            if (url.substring(0,4) == "sourcery/") {
+            if (url.substring(0,9) == "sourcery/") {
                 url = _.webroot + url
             } else {
                 url = _.productpath + url

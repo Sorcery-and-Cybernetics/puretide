@@ -64,6 +64,7 @@
             }
 
             , require: function (name, rule) {
+//                if (!_.filesystem.isdir$(name)) { throw "Error: require requires a directory" }
                 _.make.requiremodule(this, name, rule)
                 return this
             }            

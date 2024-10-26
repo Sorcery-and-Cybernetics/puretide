@@ -6,6 +6,9 @@ _.ambient.module("base")
         _.cr = "\r"
 
         _.enum = {}
+        _.helper = {
+            base: {}
+        }
     
         _.__uniqueid = 1
     
@@ -151,7 +154,7 @@ _.ambient.module("base")
         }
 
         _.cbool = function (value) {
-            var __truevalues = {
+            _.helper.base.boolvalues = {
                 "y": true
                 , "yes": true
                 , "t": true
@@ -161,7 +164,7 @@ _.ambient.module("base")
             }
 
             if (typeof value == "string") {
-                return __truevalues[value.toLowerCase()] || false
+                return _.helper.base.boolvalues[value.toLowerCase()] || false
             }
             return !!value
         }

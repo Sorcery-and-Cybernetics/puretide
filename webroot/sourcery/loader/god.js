@@ -7,6 +7,7 @@
             , world: null
             , requires: null
             , loaded: null
+            , isstarted: false
 
             , create: function(system, name, config) {
                 this.system = system
@@ -14,18 +15,21 @@
                 this.config = config || null
 
                 this.requires = {}
+                this.roleengine = _.make.roleengine()
             }
 
             , start: function () {
+                this.isstarted = true
                 this.loadmodules()
             }
 
             , require: function(modulepath) {
                 var me = this
 
+                _.debug("Require " + modulepath)
+
                 if (this.requires[modulepath]) { 
-                    return
-                    //throw "Required module " + modulepath + " can not be loaded."
+                    throw "Required module " + modulepath + " can not be loaded."
                 }
                 this.requires[modulepath] = true
 
@@ -39,7 +43,13 @@
                     }
                 }
 
-                setTimeout(function() { me.loadmodules() }, 1)
+                if (this.isstarted) {
+                    setTimeout(function() { 
+                        _.debug("Timeout triggered")
+                        me.loadmodules() 
+                    }, 1)
+                }
+
             }
 
             , checkrequire: function(module) {
@@ -68,13 +78,17 @@
                 return false
             }
 
-            , addrule: function(rule) {
-                
+            , addrole: function(rule) {
+                this.roleengine.addrole(rule)
             }
 
             , checkrule: function(module) {
-                var result = this.checkrequire(module)
-                return result
+                if (module.isrequiremodule()) { return true }
+
+                if (!this.checkrequire(module)) { return false }
+
+                var isrequired = module.isrequiremodule()? false: this.requires[module.fullpath()]
+                return this.roleengine.checkrule(module.rule(), isrequired)
             }
 
             , isloaded: function(name) {
@@ -89,11 +103,11 @@
 
                 if (!result) { return }
 
-                _.debug("All necessary modules are loaded")
+                _.debug(me.name + " All necessary modules are loaded")        
                 me.world = _.make.world(me, me.name)
 
                 _.foreach(result, function(modulename) {
-                    _.debug("Installing " + modulename)
+                    _.debug(me.name + " Installing " + modulename)        
                     var module = _.modules[modulename]
                     var source = module.source()
                     source(me.world)
@@ -106,7 +120,7 @@
                 var me = this
 
                 var path = module.fullpath()
-                _.debug("Loading: " + path)        
+                _.debug(this.name + " is loading: " + path)        
                 _.currentpath = path
 
                 path += (module.isrootmodule()? "_root.js": ".js")
