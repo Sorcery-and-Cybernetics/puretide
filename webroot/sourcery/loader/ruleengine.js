@@ -1,3 +1,6 @@
+//*************************************************************************************************
+// ruleengine - Copyright (c) 2024 SAC. All rights reserved.
+//*************************************************************************************************
 ; (function (_) {
     var validaterule = function (me, filter, isrequired) {
         function validatetoken(test) {

@@ -1,6 +1,9 @@
+//*************************************************************************************************
+// loaderroot - Copyright (c) 2024 SAC. All rights reserved.
+//*************************************************************************************************
 var loaderpath = "./" 
 
-require(loaderpath + "system.js")
+require(loaderpath + "loader.js")
 require(loaderpath + "base.js")
 require(loaderpath + "filesystem.js")
 require(loaderpath + "config.js")
@@ -14,7 +17,11 @@ require(loaderpath + "god.js")
 
 require(loaderpath + "ruleengine.js")
 
+/** 
+Project setup
 
+
+**/
 
 /** doc
 # The Sactide Framework Module Loading System

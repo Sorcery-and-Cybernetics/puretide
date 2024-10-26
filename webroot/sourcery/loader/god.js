@@ -1,8 +1,10 @@
+//*************************************************************************************************
+// god - Copyright (c) 2024 SAC. All rights reserved.
+//*************************************************************************************************
 ; (function (_) {
     _.define.object("god", function () {
         return {
-            system: null
-            , config: null
+            config: null
             , name: ""
             , world: null
             , requires: null
@@ -10,7 +12,6 @@
             , isstarted: false
 
             , create: function(system, name, config) {
-                this.system = system
                 this.name = name
                 this.config = config || null
 
